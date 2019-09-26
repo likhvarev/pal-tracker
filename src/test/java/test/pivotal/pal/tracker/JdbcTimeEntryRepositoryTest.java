@@ -5,6 +5,7 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import io.pivotal.pal.tracker.JdbcTimeEntryRepository;
 import io.pivotal.pal.tracker.TimeEntry;
 import io.pivotal.pal.tracker.TimeEntryRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,6 +33,11 @@ public class JdbcTimeEntryRepositoryTest {
         jdbcTemplate.execute("DELETE FROM time_entries");
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        jdbcTemplate.execute("DELETE FROM time_entries");
     }
 
     @Test
